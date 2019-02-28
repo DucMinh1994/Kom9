@@ -1,0 +1,185 @@
+.product, .list{
+  border: 1px solid #FF6600;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.product img, .list img{
+  max-width: 100%;
+}
+.price{
+  color: #FF6600;
+}
+.menu{
+  height: 40px;
+  background-color: #FF6600;
+  padding: 20px;
+  line-height: 0px;
+}
+.menu:hover{
+  background-color: #FF9900;
+  color: white;
+}
+.name{
+  height: 40px;
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100%; 
+}
+.navbar-nav li{
+  position: relative;
+}
+.navbar-nav li:hover .cart{
+  /*display: block;*/
+}
+.cart{
+  font-weight: bold;
+  display: none;
+  box-shadow: 4px 3px 30px -1px #DCDCDC;
+  position: absolute;
+  top: 50px;
+  left: -44px;
+  width:380px;
+  background-color: white;
+}
+.acs{
+  position: absolute;
+  color: #F66000;
+  font-size: 13px;
+  top: -4px;
+  right: 36px;
+}
+.information{
+  height: 25px;
+  display: flex;
+  position: relative;
+}
+.number_cart{
+  padding-top: 10px;
+  padding-left: 27px;
+}
+.information div:nth-child(1){
+  width: 200px;
+}
+.information .quantity{
+  width: 70px;
+  display: flex;
+}
+.information .quantity div{
+  padding: 0 10px;
+}
+.information .quantity a i{
+  font-size: 10px;
+}
+.information .quantity .btn-minus{
+  color: #FF9900;
+  background: white;
+  border: none;
+  padding: 0px;
+}
+.information .quantity .btn-plus{
+  color: #009900;
+  background: white;
+  border: none;
+  padding: 0px;
+}
+.money{
+  position: relative;
+}
+.money,.pay{
+  height: 40px;
+  /*border-top: 1px solid #F66000;*/
+}
+.money{
+  line-height: 40px;
+}
+.money span:first-child{
+  float: left;
+  margin-left: 27px;
+}
+.money span:nth-child(2){
+  float: right;
+  margin-right: 45px;
+}
+.pay .btn-pay{
+  float: right;
+  color: red;
+}
+.cart h3{
+  text-align: center;
+  font-size: 22px;
+  font-family: Cabin;
+  color: #F66000;
+}
+.delete{
+  margin-left: 20px;
+  color: red;
+  cursor: pointer;
+}
+.delete:hover{
+  color: red;
+}
+.error{
+  color: red;
+}
+.number_view{
+  position: absolute;
+  top: 5px;
+  text-align: center;
+  left: 27px;
+  width: 20px;
+  height: 19px;
+  border-radius: 50%;
+  color: white;
+  background-color: #F66000;
+}
+.cart .pay .btn-pay{
+  color: white;
+  margin-right: 45px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  background-color: #F66000;
+}
+.cart .pay .btn-pay:hover{
+text-decoration: none;
+}
+.frm-show form{
+  width: 85%;
+  margin-left: 28px;
+}
+/*search*/
+#searchfield { display: block; width: 100%; margin-bottom: 35px; }
+
+#searchfield form {
+  display: inline-block;
+  background: #eeefed;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px 0 0 0;
+}
+#searchfield form .biginput {
+  width: 600px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  color: #aeaeae;
+  font-weight:normal;
+  font-size: 1.5em;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#searchfield form .biginput:focus {
+  color: #858585;
+}
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
