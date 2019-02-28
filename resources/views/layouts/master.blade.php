@@ -46,6 +46,7 @@
           .fa-delete{
             font-size: 15px;
             color: #d9534f;
+            font-weight: bold;
           }
 
         </style>
