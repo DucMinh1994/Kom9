@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class, 
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 

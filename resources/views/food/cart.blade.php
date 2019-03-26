@@ -27,6 +27,10 @@
 				</tr>
 			<?php endforeach ?>
 			<tr style="border-top: 2px solid black;">
+				<td colspan="2" style="font-weight: bold; color: #f66000;">Ghi chú:  </td>
+				<td class="money-c">{{$note}}</td>
+			</tr>
+			<tr>
 				<td colspan="4" style="font-weight: bold; color: #f66000;">Thành tiền: </td>
 				<td class="money-c">{{Cart::subtotal()}}</td>
 			</tr>
@@ -44,5 +48,5 @@
 			</tr>
 		</tbody>
 	</table>
-	<button type="" class="print">In hóa đơn</button>
+	<button type="" class="print btn btn-primary">In hóa đơn</button>
 	@endsection

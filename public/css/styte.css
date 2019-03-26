@@ -5,6 +5,7 @@
 }
 .product img, .list img{
   max-width: 100%;
+  height: 120px;
 }
 .price{
   color: #FF6600;
@@ -18,6 +19,22 @@
 .menu:hover{
   background-color: #FF9900;
   color: white;
+}
+.error{
+  color: red;
+}
+.fa-eye{
+  color: #5bc0de;
+  font-size: 15px;
+}
+.fa-edit{
+  color: #428bca;
+  font-size: 15px;
+}
+.fa-delete{
+  font-size: 15px;
+  color: #d9534f;
+  font-weight: bold;
 }
 .name{
   height: 40px;
@@ -50,10 +67,10 @@
   color: #F66000;
   font-size: 13px;
   top: -4px;
-  right: 36px;
+  right: 24px;
 }
 .information{
-  height: 25px;
+  padding-bottom: 10px;
   display: flex;
   position: relative;
 }
@@ -62,7 +79,7 @@
   padding-left: 27px;
 }
 .information div:nth-child(1){
-  width: 200px;
+  width: 250px;
 }
 .information .quantity{
   width: 70px;
@@ -73,6 +90,13 @@
 }
 .information .quantity a i{
   font-size: 10px;
+}
+.information .quantity button .fa-minus{
+    margin-left: -10px;
+  }
+.information .quantity button .fa-minus, .information .quantity button .fa-plus{
+  position: absolute;
+  top: 4px;
 }
 .information .quantity .btn-minus{
   color: #FF9900;
@@ -102,7 +126,13 @@
 }
 .money span:nth-child(2){
   float: right;
-  margin-right: 45px;
+  margin-right: 32px;
+}
+select{
+  margin-bottom: 6px;
+}
+#search{
+  margin-top: 9px;
 }
 .pay .btn-pay{
   float: right;
@@ -144,7 +174,7 @@
   background-color: #F66000;
 }
 .cart .pay .btn-pay:hover{
-text-decoration: none;
+  text-decoration: none;
 }
 .frm-show form{
   width: 85%;
