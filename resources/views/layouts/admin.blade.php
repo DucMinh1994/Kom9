@@ -181,23 +181,24 @@
       });
        $(document).ready( function () {
         $('.report').DataTable();
+        $('#month-table').DataTable();
       } );
-       $('#month-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '/reports/statistical',
-        columns: [
-        { data: 'id', name: 'id' },
-        { data: 'code', name: 'code' },
-        { data: 'name', name: 'name' },
-        { data: 'mobile', name: 'mobile' },
-        { data: 'address', name: 'address' },
-        { data: 'status', name: 'status' },
-        { data: 'money_ship', name: 'money_ship' },
-        { data: 'total', name: 'total' },
-        { data: 'note', note: 'note' }
-        ]
-      });
+      //  $('#month-table').DataTable({
+      //   processing: true,
+      //   serverSide: true,
+      //   ajax: '/reports/statistical',
+      //   columns: [
+      //   { data: 'id', name: 'id' },
+      //   { data: 'code', name: 'code' },
+      //   { data: 'name', name: 'name' },
+      //   { data: 'mobile', name: 'mobile' },
+      //   { data: 'address', name: 'address' },
+      //   { data: 'status', name: 'status' },
+      //   { data: 'money_ship', name: 'money_ship' },
+      //   { data: 'total', name: 'total' },
+      //   { data: 'note', note: 'note' }
+      //   ]
+      // });
        $(document).on('click','.search-user',function(event){
         event.preventDefault();
         let search = $('.search').val();

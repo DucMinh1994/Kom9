@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class, 
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -229,7 +230,7 @@ return [
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

@@ -7,7 +7,9 @@ use Yajra\Datatables\Datatables;
 use App\Order;
 use Charts;
 use DB;
-
+use Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Exports\OrderExport;
 class ReportController extends Controller
 {
     public function index()
@@ -140,9 +142,19 @@ class ReportController extends Controller
     	// return view('report.index');
     }
     public function month(){
-    	return view('report.month');
+        $order = Order::where(DB::raw("(DATE_FORMAT(created_at,'%m'))"),date('m'))
+                    ->get();
+        $total = 0;
+        $ship = 0;
+        foreach ($order as $value) {
+            $total += $value->total;
+            $ship += $value->money_ship;
+        }
+    	return view('report.month',compact('order','total','ship'));
     }
-    public function getData(){
+    public function getData(request $request){
+        $order = Order::whereMonth('created_at', $request->keyword)->get();
+        dd($order);
     	return Datatables::of(Order::query())->make(true);
     }
     public function ship(){
@@ -172,5 +184,24 @@ class ReportController extends Controller
             $total_ship += $value->money_ship;
         }
         return view('report.usership',compact('order','totalDay','total_ship'));
+    }
+
+    public function excel(){
+        $orders = Order::where(DB::raw("(DATE_FORMAT(created_at,'%m'))"),date('m'))->get();
+        // $users = User::select('id', 'name', 'email', 'created_at')->get();
+        return Excel::download(new OrderExport, 'order.xlsx');
+        
+        // $order_array[] = array('mobile','address');
+        // foreach ($orders as $order) {
+        //     $order_array[] = array(
+        //         'mobile' => $order->mobile,
+        //         'address' => $order->address
+        //     );
+        // }
+        // Excel::create('Customer Data', function($excel) use ($order_array){
+        //     $excel->setTitle('Customer Data');
+        //     $excel->sheet('Customer Data', function($sheet) use ($order_array){
+        //     $sheet->fromArray($order_array, null, 'A1', false, false);});
+        //  })->download(' ');
     }
 }

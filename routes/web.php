@@ -35,4 +35,5 @@ Route::get('/reports/users','ReportController@ship');
 Route::get('/reports/users/search','ReportController@search');
 Route::post('/live_search', 'HomeController@action');
 
+Route::get('/export','ReportController@excel');
 
