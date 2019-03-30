@@ -10,6 +10,9 @@ use DB;
 use Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use App\Exports\OrderExport;
+use App\Exports\CustomersExport;
+use App\Customers;
+
 class ReportController extends Controller
 {
     public function index()
@@ -154,8 +157,13 @@ class ReportController extends Controller
     }
     public function getData(request $request){
         $order = Order::whereMonth('created_at', $request->keyword)->get();
-        dd($order);
-    	return Datatables::of(Order::query())->make(true);
+        $total = 0;
+        $ship = 0;
+        foreach ($order as $value) {
+            $total += $value->total;
+            $ship += $value->money_ship;
+        }
+    	return view('report.month',compact('order','total','ship'));
     }
     public function ship(){
     	$order = Order::where(DB::raw("(DATE_FORMAT(created_at,'%d'))"),date('d'))
@@ -188,20 +196,13 @@ class ReportController extends Controller
 
     public function excel(){
         $orders = Order::where(DB::raw("(DATE_FORMAT(created_at,'%m'))"),date('m'))->get();
-        // $users = User::select('id', 'name', 'email', 'created_at')->get();
         return Excel::download(new OrderExport, 'order.xlsx');
-        
-        // $order_array[] = array('mobile','address');
-        // foreach ($orders as $order) {
-        //     $order_array[] = array(
-        //         'mobile' => $order->mobile,
-        //         'address' => $order->address
-        //     );
-        // }
-        // Excel::create('Customer Data', function($excel) use ($order_array){
-        //     $excel->setTitle('Customer Data');
-        //     $excel->sheet('Customer Data', function($sheet) use ($order_array){
-        //     $sheet->fromArray($order_array, null, 'A1', false, false);});
-        //  })->download(' ');
+    }
+    public function excelCustomer(){
+        return Excel::download(new CustomersExport, 'KhachHang.xlsx');
+    }
+    public function getCustomer(){
+        $customers = Customers::get();
+        return view('report.customer',compact('customers'));
     }
 }

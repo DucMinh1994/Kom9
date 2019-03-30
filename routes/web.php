@@ -34,6 +34,9 @@ Route::get('/reports/month','ReportController@month');
 Route::get('/reports/users','ReportController@ship');
 Route::get('/reports/users/search','ReportController@search');
 Route::post('/live_search', 'HomeController@action');
+Route::get('reports/customer','ReportController@getCustomer');
 
 Route::get('/export','ReportController@excel');
+Route::get('/export/customer','ReportController@excelCustomer');
+
 

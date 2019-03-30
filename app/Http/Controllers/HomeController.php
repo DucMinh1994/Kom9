@@ -32,20 +32,20 @@ class HomeController extends Controller
         foreach ($customers as $customer) {
             if($customer->mobile == $request->mobile){
                 $count = $customer->count + 1;
-                Customers::where('id',$customer->id)->update(['count' => $count]);
-            }else{
-            Customers::create(['mobile' => $request->mobile, 'address' => $request->address, 'count' => 1]);
-               }
-            }
+                Customers::where('id', $customer->id)->update(['count' => $count]);
+            // }else{
+            //     Customers::create(['mobile' => $request->mobile, 'address' => $request->address, 'count' => 1]);
+            // }
+        }
             if(!strpos($request->sale, '%')){
-            $money = str_replace(',','',Cart::subtotal());
-            $subtotal = ($money + $request->money_ship)-$request->sale;
-            $order = Order::create(['code' => $code, 'name' => $request->name, 'email' => '', 'mobile' => $request->mobile, 'address' => $request->address, 'status' => $request->sale, 'user_id' => 1, 'money_ship' => $request->money_ship, 'total' => $subtotal, 'note' => $request->note]);
-            foreach (Cart::content() as $cart) {
-                OrderDetail::Create(['order_id' => $order->id, 'product_id' => $cart->id, 'soluong' => $cart->qty]);
-            }
+                $money = str_replace(',','',Cart::subtotal());
+                $subtotal = ($money + $request->money_ship)-$request->sale;
+                $order = Order::create(['code' => $code, 'name' => $request->name, 'email' => '', 'mobile' => $request->mobile, 'address' => $request->address, 'status' => $request->sale, 'user_id' => 1, 'money_ship' => $request->money_ship, 'total' => $subtotal, 'note' => $request->note]);
+                foreach (Cart::content() as $cart) {
+                    OrderDetail::Create(['order_id' => $order->id, 'product_id' => $cart->id, 'soluong' => $cart->qty]);
+                }
 
-            return view('food.cart',['request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
+                return view('food.cart',['request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
             }else{
                 $money = str_replace(',','',Cart::subtotal());
                 $sale_input = str_replace('%','',$request->sale);

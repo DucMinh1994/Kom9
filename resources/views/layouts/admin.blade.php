@@ -112,6 +112,12 @@
           <span>Báo cáo theo ngày</span>
         </a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/reports/customer">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Báo cáo khách hàng</span>
+        </a>
+      </li>
         </ul>
         <div id="content-wrapper">
           @yield('home')
@@ -182,6 +188,7 @@
        $(document).ready( function () {
         $('.report').DataTable();
         $('#month-table').DataTable();
+        $('.customer').DataTable();
       } );
       //  $('#month-table').DataTable({
       //   processing: true,
