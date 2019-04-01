@@ -29,13 +29,17 @@ class HomeController extends Controller
         $code = 'HD'.time();
         $customers = Customers::get();
         $count = 0;
+        $ktra = 'false';
+        $carts = Cart::Content();
         foreach ($customers as $customer) {
             if($customer->mobile == $request->mobile){
                 $count = $customer->count + 1;
                 Customers::where('id', $customer->id)->update(['count' => $count]);
-            // }else{
-            //     Customers::create(['mobile' => $request->mobile, 'address' => $request->address, 'count' => 1]);
-            // }
+                $ktra = 'true';
+             }
+        }
+        if($ktra == 'false'){
+              Customers::create(['mobile' => $request->mobile, 'address' => $request->address, 'count' => 1]);
         }
             if(!strpos($request->sale, '%')){
                 $money = str_replace(',','',Cart::subtotal());
@@ -44,8 +48,8 @@ class HomeController extends Controller
                 foreach (Cart::content() as $cart) {
                     OrderDetail::Create(['order_id' => $order->id, 'product_id' => $cart->id, 'soluong' => $cart->qty]);
                 }
-
-                return view('food.cart',['request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
+                Cart::destroy();
+                return view('food.cart',['carts' => $carts,'request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
             }else{
                 $money = str_replace(',','',Cart::subtotal());
                 $sale_input = str_replace('%','',$request->sale);
@@ -55,7 +59,8 @@ class HomeController extends Controller
                 foreach (Cart::content() as $cart) {
                     OrderDetail::Create(['order_id' => $order->id, 'product_id' => $cart->id, 'soluong' => $cart->qty]);
                 }
-                return view('food.cart',['request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
+                Cart::destroy();
+                return view('food.cart',['carts' => $carts, 'request' => $request,'HD' => $code, 'submoney'=>$subtotal,'sale' => $request->sale,'note' => $request->note]);
             }
         }
     public function menu($id){
@@ -74,21 +79,21 @@ class HomeController extends Controller
         $product = Product::find($id);
         switch ($request->selectId) {
             case '1':
-                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId]);
+                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId , 'tick' => '+']);
                 break;
             case '2':
                 $product->price +=  5000;
-                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId]);
+                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId, 'tick' => '+']);
                 break;
             case '3':
                 $product->price +=  15000;
-                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId]);
+                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId, 'tick' => '+']);
                 break;
             case '4':
-                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId]);
+                $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => $request->select, 'idZise' => $request->selectId, 'tick' => '+']);
                 break;
             default:
-                # code...
+                 $cart = Cart::add($product->id,$product->name,1,$product->price, ['size' => "", 'tick' => '']);
                 break;
         }
         

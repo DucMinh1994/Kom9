@@ -69,7 +69,7 @@
 
                             <?php foreach (Cart::content() as $data): ?>
                               <div class="information {{$data->rowId}}">
-                                <div>{{$data->name}} + {{ $data->options->size }}</div>
+                                <div>{{$data->name}} {{$data->options->tick}} {{ $data->options->size }}</div>
                                 <div class="quantity">
                                   <button  class="btn-minus" rowId="{{$data->id}}" rowdd="{{$data->rowId}}" title=""><i class="fas fa-minus"></i></button> 
                                   <div class="qty{{$data->rowId}}">{{$data->qty}}</div> 

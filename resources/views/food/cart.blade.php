@@ -17,8 +17,8 @@
 		</thead>
 		<tbody>
 			<?php $i=1; ?>
-			<?php foreach (Cart::content() as $data): ?>
-				<tr class="tr{{$data->id}}">
+			<?php foreach ($carts as $data): ?>
+				<tr class="tr">
 					<td>{{$i++}}</td>
 					<td>{{$data->name}}</td>
 					<td class="qty{{$data->id}}">{{$data->qty}}</td>

@@ -42,17 +42,23 @@
          $(document).on('click','.btn-add',function(e){
           e.preventDefault();
           var id = $(this).attr('rowId');
-          var select = $(".selectList"+id+" :selected").text();
-          var selectId = $(".selectList"+id+" :selected").val();
-          var size = $(this).attr('rowdd');
+          var formData = new FormData();
+          formData.append('select',$(".selectList"+id+" :selected").text());
+          formData.append('selectId',$(".selectList"+id+" :selected").val());
+          formData.append('size',$(this).attr('rowdd'));
+
+          // var select = $(".selectList"+id+" :selected").text() || 'null';
+          // var selectId = $(".selectList"+id+" :selected").val() || '5';
+          // var size = $(this).attr('rowdd');
           $.ajax({
-            type  :  'get',
+            type  :  'post',
             url   :   '/plus/'+id,
-            data:{select:select , selectId : selectId , size : size},
-            dataType:'json',
+            data: formData,
+            processData: false,
+            contentType: false,
             success:function(response){
                 var temp = `<div class="information `+response.cart.rowId+`">
-                <div>`+response.cart.name+` + `+response.cart.options.size+`</div>
+                <div>`+response.cart.name+` `+response.cart.options.tick+` `+response.cart.options.size+`</div>
                 <div class="quantity">
                 <button class="btn-minus" rowId="`+response.cart.id+`" rowdd="`+response.cart.rowId+`" title=""><i class="fas fa-minus"></i></button>
                 <div class="qty`+response.cart.rowId+`">`+response.cart.qty+`</div>

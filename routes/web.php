@@ -17,7 +17,7 @@
 Route::resource('/','HomeController');
 Route::delete('/{id}','HomeController@destroy');
 Route::get('/menu/{id}','HomeController@menu');
-Route::get('/plus/{id}','HomeController@pay');
+Route::post('/plus/{id}','HomeController@pay');
 Route::get('/muathem/{id}','HomeController@mua');
 Route::get('/minus/{id}','HomeController@minus');
 Route::post('/cart','HomeController@cart');
